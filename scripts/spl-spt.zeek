@@ -11,6 +11,7 @@ export {
 
 	type Info: record {
 		# Not actually optional, but we load it in last
+		ts: time &log &optional;
 		uid: string &log &optional;
 
 		orig_spl:	vector of count &log &optional;
@@ -89,6 +90,7 @@ event connection_state_remove(c: connection) {
 		return;
 
 	c$spl$uid = c$uid;
+        c$spl$ts = c$start_time;
 
 	Log::write(SPL::LOG, c$spl);
 }
